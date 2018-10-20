@@ -1,0 +1,60 @@
+{% extends 'coolie/base.html' %}
+
+{% block content %}
+<div class="span4 well">
+			<form method="POST" action="{% url 'reserve' %}">
+                {% csrf_token %}
+				<table class="table">
+
+
+
+
+							<th style="border-top:0px;"><label>Search Station</label></th>
+							<td style="border-top:0px;">
+
+								<input  list="boarding"class="input-block-level" name="boarding_station" id="fr" >
+								<datalist id="boarding">
+
+									<option value="    ">     </option>
+								</datalist>
+							</td>
+						</tr>
+
+
+						<tr>
+							<th style="border-top:0px;"><label> Date</label></th>
+							<td style="border-top:0px;">
+								<input class="input-block-level input-medium" name="doj" id="date" placeholder="Date" type="date" value="{% now 'Y-m-d' %}" min="{% now 'Y-m-d' %}" max="{{ dt }}">
+							</td>
+						</tr>
+						<tr>
+							<td style="border-top:0px;"><input class="btn btn-info" type="submit" value="OK"></td>
+							<td style="border-top:0px;"><a href="/reservation" class="btn btn-info" type="reset" value="Reset">Reset</a></td>
+						</tr>
+				</table>
+			</form>
+		</div>
+		<!-- display coolie -->
+		<div class="span8 well" style="overflow:auto;">
+			<table class="table">
+			<tr>
+				<th style="border-top:0px;"> Coolie Id.</th>
+				<th style="border-top:0px;"> Coolie Name </th>
+				<th style="border-top:0px;"> Capacity </th>
+				<th style="border-top:0px;"> Book </th>
+			</tr>
+
+						<tr class="text-error">
+							<td > </td>
+							<td >
+							<a href="/reservation_details?train_num={{j.train_number}}&from={{retained_data.boarding_station}}&to={{retained_data.destination_station}}&doj={{retained_data.doj}}&quota={{retained_data.quota}}">    </a></td>
+							<td >  </td>
+							<td >  </td>
+						</tr>
+					</table>
+			</table>
+			<div class=\"alert alert-error\"  style=\"margin:100px 180px;\"> please search the Coolie</div>
+				</div>
+
+
+{% endblock %}
