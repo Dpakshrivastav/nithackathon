@@ -8,7 +8,7 @@ class Location(models.Model):
     railwayStation = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Employee(models.Model):
@@ -18,9 +18,9 @@ class Employee(models.Model):
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
     registrationNo = models.CharField(max_length=50)
-
+    contactNo = models.CharField(max_length=13, default=0)
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Booking(models.Model):
@@ -36,7 +36,7 @@ class Booking(models.Model):
     flagIn = models.CharField(max_length=30, choices=flags, default='Platform to Outside')
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Rate(models.Model):
@@ -44,7 +44,7 @@ class Rate(models.Model):
     rate = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.Weight + "=" + self.rate
+        return self.weight + "=" + self.rate
 
 
 class Available(models.Model):
@@ -52,7 +52,5 @@ class Available(models.Model):
     avail = models.BooleanField(default=True)
 
     def __str__(self):
-        if(avail == True):
-            return self.empId + "  Available"
-        else:
-            return self.empId + "  Not Availble"
+        return str(self.empId)
+
