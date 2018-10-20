@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^$', views.home, name='home'),
     url(r'^reserve/$', views.reserve, name='reserve'),
-    url(r'destination/$', views.destination, name='destination')
+    url(r'^destination/$', views.destination, name='destination'),
+    url(r'^(?P<pk>[0-9]+)/$', views.profile, name='profile')
 
 ]

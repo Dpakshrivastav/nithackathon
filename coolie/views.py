@@ -1,3 +1,4 @@
+from django.views import generic
 from django.shortcuts import render, redirect
 from .form import SignUpForm
 from django.contrib.auth.decorators import login_required
@@ -26,15 +27,20 @@ def home(request):
 
 
 def reserve(request):
-    stations = Location.objects.all()
-    return render(request, 'coolie/list.html', { 'stations' : stations })
+    railway = request.POST.get('station')
+    railid = Location.objects.filter(railwayStation=railway).values_list('id', flat=True)
+    coolieId = Employee.objects.filter(id__in=railid).values_list('id', flat=True)
+    coolie = Employee.objects.all()
+    avail = Available.objects.filter(id__in=coolieId)
+    context = {'coolie': coolie, 'mylist': zip(coolie, avail)}
+    return render(request, 'coolie/list.html', context)
 
 
 def destination(request):
-    railway = request.POST.get('station')
-    railid = Location.objects.filter(railwayStation=railway).values_list('id', flat=True)
-    coolie = Employee.objects.filter(id__in = railid)
-    avail = Available.objects.filter(id__in=coolie)
-    context = {'coolie': coolie, 'mylist' : zip(coolie, avail)}
-    return render(request, 'coolie/destination.html', context)
+    stations = Location.objects.all()
+    return render(request, 'coolie/destination.html', { 'stations' : stations })
 
+
+def profile(request, employee_id):
+    coolie = Employee.objects.filter(id=employee_id)
+    return render(request, 'coolie/profile.html', {'coolie':coolie})

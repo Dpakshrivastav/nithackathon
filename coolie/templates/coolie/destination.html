@@ -4,37 +4,18 @@
 <div class="span4 well">
 			<form method="POST" action="{% url 'reserve' %}">
                 {% csrf_token %}
-				<select name="station">
-
-
-						<option value="delhi">Delhi</option>
-						<option value="lucknow">Lucknow</option>
-
-				</select>
+				<div class="form-group">
+  					<label for="sel1">Enter Station</label>
+  							<select class="form-control" name="station" id="sel1">
+    							{% for i in stations %}
+									<option value="{{ i.railwayStation }}">{{ i.railwayStation }}</option>
+								{% endfor %}
+							</select>
+</div>
 				<input type="submit" name="submit">
 			</form>
 		</div>
 		<!-- display coolie -->
-		<div class="span8 well" style="overflow:auto;">
-			<table class="table">
-			<tr>
-				<th style="border-top:0px;"> Coolie Id.</th>
-				<th style="border-top:0px;"> Coolie Name </th>
-				<th style="border-top:0px;"> Capacity </th>
-				<th style="border-top:0px;"> Book </th>
-			</tr>
-
-						<tr class="text-error">
-							<td > </td>
-							<td >
-							<a href="/reservation_details?train_num={{j.train_number}}&from={{retained_data.boarding_station}}&to={{retained_data.destination_station}}&doj={{retained_data.doj}}&quota={{retained_data.quota}}">    </a></td>
-							<td >  </td>
-							<td >  </td>
-						</tr>
-					</table>
-			</table>
-			<div class=\"alert alert-error\"  style=\"margin:100px 180px;\"> please search the Coolie</div>
-				</div>
 
 
 {% endblock %}

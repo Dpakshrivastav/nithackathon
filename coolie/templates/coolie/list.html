@@ -13,13 +13,15 @@
     </thead>
 
     <tbody>
-    {% for i,j in coolie %}
-      <tr>
+    {% for i,j in mylist %}
+
+       <tr>
         <td>{{ i.id }}</td>
-        <td>{{ i.firstName }} {{ i.lastName }}</td>
+        <td> <a href="{% url 'profile' i.id %}">{{ i.firstName }} {{ i.lastName }}</a></td>
         <td>{{ i.contactNo }}</td>
         <td>{% if j %} Available {% else %} Not Available {% endif %}</td>
       </tr>
+
     {% endfor %}
     </tbody>
   </table>
