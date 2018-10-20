@@ -41,11 +41,7 @@ def destination(request):
     return render(request, 'coolie/destination.html', { 'stations' : stations })
 
 
-<<<<<<< HEAD
 def profile(request, coolie_id):
     coolie = Employee.objects.filter(id=coolie_id)
-=======
-def profile(request, employee_id):
-    coolie = Employee.objects.filter(id=employee_id)
->>>>>>> de45a63f82ee259d1250267d18c0945aae8ebee7
-    return render(request, 'coolie/profile.html', {'coolie':coolie})
+    station = Location.objects.filter(id=coolie_id).values_list('railwayStation', flat=True)
+    return render(request, 'coolie/profile.html', { 'coolie' : coolie, 'station' : station, 'mylist': zip(coolie, station) })
