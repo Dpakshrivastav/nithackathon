@@ -45,6 +45,7 @@ def destination(request):
 def profile(request, coolie_id):
     coolie = Employee.objects.filter(id=coolie_id)
     station = Location.objects.filter(id=coolie_id).values_list('railwayStation', flat=True)
+<<<<<<< HEAD
     rating = CoolieRating.objects.filter(id=coolie_id).values_list('id')
     # avgrating = st.mean(rating)
     review = CustomerRating.objects.filter(id=coolie_id)
@@ -55,3 +56,6 @@ def profile(request, coolie_id):
         sum+=rating[i]
     print(sum)
     return render(request, 'coolie/profile.html', { 'coolie' : coolie, 'station' : station, 'range': range(0, len(coolie_id)),  'review': review})
+=======
+    return render(request, 'coolie/profile.html', { 'coolie' : coolie, 'station' : station, 'mylist': zip(coolie, station) })
+>>>>>>> 42ea4d5e193efbe1224fd6d7050b3ed9cfb298ef

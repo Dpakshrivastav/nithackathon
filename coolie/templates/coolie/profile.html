@@ -12,8 +12,13 @@
                     							{% if user.is_authenticated %}
 			        <a href="" id="editp1" style="float:right;margin-right:5%;" class="btn btn-info">Book</a>
       					{% else %}
+<<<<<<< HEAD
 					<p class="btn btn-info" style="float:right;margin-right:5%; background: grey">Book</p><br>
       			<br><small style="float: right;">Please sign in to book Sahayak</small>
+=======
+       				 <a href="" id="editp1" class="btn btn-info" style="float:right;margin-right:5%; color:grey;">Book</a>
+      			<small>Please sign in to book Sahayak</small>
+>>>>>>> 42ea4d5e193efbe1224fd6d7050b3ed9cfb298ef
       					{% endif %}
 
                 </td>
@@ -23,8 +28,13 @@
 					<div class="span8" style="float:left;width:80%;">
 					<table class="table">
 					<tr><td >Name : </td> <td style="text-transform:capitalize;"> {{ i.firstName }} {{ i.lastName }}</td></tr>
+<<<<<<< HEAD
 					<tr><td >Station : </td> <td style="text-transform:capitalize;"> {{ station.0 }}  </td></tr>
 					<tr><td>Registration No : </td> <td>  {{ i.registrationNo }}  </td></tr>
+=======
+					<tr><td >Station : </td> <td style="text-transform:capitalize;"> {{ j.railwayStation }}   </td></tr>
+					<tr><td>Registration No : </td> <td>  {{ i.registrationNo}}  </td></tr>
+>>>>>>> 42ea4d5e193efbe1224fd6d7050b3ed9cfb298ef
 					<tr><td>Rating : </td> <td>    </td></tr>
 					<tr><td>Mobile No : </td> <td>   {{ i.contactNo }} </td></tr>
 
