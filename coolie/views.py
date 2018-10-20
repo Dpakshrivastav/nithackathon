@@ -19,5 +19,6 @@ def signup(request):
     return render(request, 'coolie/signup.html', {'form': form})
 
 
+@login_required
 def home(request):
     return render(request, 'coolie/home.html')

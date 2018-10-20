@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <title>{% block title %}Simple is Better Than Complex{% endblock %}</title>
-  </head>
-  <body>
-    <header>
-      <h1>My Site</h1>
-      {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">logout</a>
-      {% else %}
-        <a href="{% url 'login' %}">login</a> / <a href="{% url 'signup' %}">signup</a>
-      {% endif %}
-      <hr>
-    </header>
-    <main>
-      {% block content %}
+    <link rel="shortcut icon" href="{% static 'coolie/images/favicon.png' %}" >
+	<link href="{% static 'coolie/css/bootstrap.min.css' %}" rel="stylesheet" >
+	<link href="{% static 'coolie/css/bootstrap.css' %}" rel="stylesheet" >
+	<link href="{% static 'coolie/css/Default.css' %}" rel="stylesheet" >
+	<script type="text/javascript"  src="{% static 'coolie/js/jquery.js' %}"></script>
+	<script>
+
+		$(document).ready(function()
+		{
+			//alert($(window).width());
+			var x=(($(window).width())-1024)/2;
+			//alert(x);
+			$('.wrap').css("left",x+"px");
+		});
+		$(window).resize(function(){
+			var x=(($(window).width())-1024)/2;
+			//alert(x);
+			$('.wrap').css("left",x+"px");
+		});
+	</script>
+	<script type="text/javascript" src="{% static 'coolie/js/bootstrap.min.js' %}"></script>
+	<!-- <script type="text/javascript" src="js/bootstrap.js"></script> -->
+	<script type="text/javascript" src="{% static 'coolie/js/man.js' %}"></script>
+
+
+<body onload="$('#myCarousel').carousel()">
+	<div style="margin-top:20px;" class="wrap">
+		<div class="header">
+			<div style="float:left;width:150px;">
+				<img src="{% static 'coolie/images/logo.png' %}"/>
+			</div><br>
+			<div id="heading">
+				<a href="#">Sahayak</a>
+			</div>
+			<div style="float:right; font-size:20px;margin-top:20px;">
+
+						<h3> Welcome </h3>
+
+						<div class="dropdown">
+						<div class="dropdown">
+							{% if user.is_authenticated %}
+			        <a href="{% url 'logout' %}">logout</a>
+      					{% else %}
+       				 <a href="{% url 'login' %}">login</a> / <a href="{% url 'signup' %}">signup</a>
+      					{% endif %}
+
+						</div>
+
+			</div>
+
+		</div>
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container" >
+				<a class="brand" href="#" >HOME</a>
+				<a class="brand" href="reservation.html">BOOK COOLIE</a>
+				<a class="brand" href="profile.html">PROFILE</a>
+					<a class="brand" href="display.html">TRANSACTIONS</a>
+			</div>
+			</div>
+		</div>
+
+	  {% block content %}
       {% endblock %}
-    </main>
-  </body>
-</html>
