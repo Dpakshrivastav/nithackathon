@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'coolie/base.html' %}
+
+{% block content %}
+<div class="span4 well">
+			<form method="POST" action="{% url 'reserve' %}">
+                {% csrf_token %}
+				<div class="form-group">
+  					<label for="sel1">Enter Station</label>
+  							<select class="form-control" name="station" id="sel1">
+    							{% for i in stations %}
+									<option value="{{ i.railwayStation }}">{{ i.railwayStation }}</option>
+								{% endfor %}
+							</select>
+</div>
+				<input type="submit" name="submit">
+			</form>
+		</div>
+		<!-- display coolie -->
+
+
+{% endblock %}

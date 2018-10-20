@@ -1,0 +1,29 @@
+{% extends 'coolie/base.html' %}
+
+{% block content %}
+
+         <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Coolie Id</th>
+        <th>Coolie Name</th>
+        <th>Coolie Contact Number</th>
+        <th>Availablity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for i,j in mylist %}
+
+       <tr>
+        <td>{{ i.id }}</td>
+        <td> <a href="{% url 'profile' i.id %}">{{ i.firstName }} {{ i.lastName }}</a></td>
+        <td>{{ i.contactNo }}</td>
+        <td>{% if j %} Available {% else %} Not Available {% endif %}</td>
+      </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
