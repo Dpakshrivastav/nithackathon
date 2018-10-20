@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from .form import SignUpForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from .models import Employee, Booking, Location, Rate, Available
+from .models import Employee, Booking, Location, Rate, Available, CoolieRating, CustomerRating
+import statistics as st
 # Create your views here.
 
 def signup(request):
@@ -41,11 +42,16 @@ def destination(request):
     return render(request, 'coolie/destination.html', { 'stations' : stations })
 
 
-<<<<<<< HEAD
 def profile(request, coolie_id):
     coolie = Employee.objects.filter(id=coolie_id)
-=======
-def profile(request, employee_id):
-    coolie = Employee.objects.filter(id=employee_id)
->>>>>>> de45a63f82ee259d1250267d18c0945aae8ebee7
-    return render(request, 'coolie/profile.html', {'coolie':coolie})
+    station = Location.objects.filter(id=coolie_id).values_list('railwayStation', flat=True)
+    rating = CoolieRating.objects.filter(id=coolie_id).values_list('id')
+    # avgrating = st.mean(rating)
+    review = CustomerRating.objects.filter(id=coolie_id)
+    # print(avgrating)
+    print(len(coolie_id))
+    sum=0
+    for i in range(1, len(coolie_id)):
+        sum+=rating[i]
+    print(sum)
+    return render(request, 'coolie/profile.html', { 'coolie' : coolie, 'station' : station, 'range': range(0, len(coolie_id)),  'review': review})

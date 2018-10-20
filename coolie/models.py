@@ -54,3 +54,20 @@ class Available(models.Model):
     def __str__(self):
         return str(self.empId)
 
+class CoolieRating(models.Model):
+    coolieId = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    rating = models.CharField(default=5),
+    review = models.TextField(null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class CustomerRating(models.Model):
+    userId = models.ForeignKey(settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, default=1)
+    rating = models.CharField(default=5),
+    review = models.TextField(null=True)
+
+    def __str__(self):
+        return str(self.id)

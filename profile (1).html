@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="images/favicon.png" ></link>
+	<link href="css/bootstrap.min.css" rel="stylesheet" >
+	<link href="css/bootstrap.css" rel="stylesheet" >
+	<link href="css/Default.css" rel="stylesheet" >	
+	<script type="text/javascript"  src="js/jquery.js"></script>
+	<script>
+
+		$(document).ready(function()
+		{
+			//alert($(window).width());
+			var x=(($(window).width())-1024)/2;
+			//alert(x);
+			$('.wrap').css("left",x+"px");
+		});
+		$(window).resize(function(){
+			var x=(($(window).width())-1024)/2;
+			//alert(x);
+			$('.wrap').css("left",x+"px");
+		});
+	</script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src=""js/man.js"></script>
+</head>
+
+<body onload="$('#myCarousel').carousel()">
+	<div style="margin-top:20px;" class="wrap">
+		<div class="header">
+			<div style="float:left;width:150px;">
+				<img src="images/logo.png"/>
+			</div>		
+			<div style="float:right; font-size:20px;margin-top:20px;">
+						<h3> Welcome </h3>
+						
+						<div class="dropdown">
+						<a href="#" class="btn btn-info">Logout</a>
+						</div>
+
+			</div>
+			<div id="heading">
+				<a href="#">Sahayak</a>
+			</div>
+		</div>
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container" >
+				<a class="brand" href="index.html" >HOME</a>
+				<a class="brand" href="reservation.html">BOOK COOLIE</a>
+				<a class="brand" href="#">PROFILE</a>
+						<a class="brand" href="display.html">TRANSACTIONS</a>
+				</div>
+			</div>
+		</div>
+		<div class="span12 well pass1">
+			<img src="7.jpg" style="margin-left:400px; width: 150px; height: 150px;">
+			<table style="width:100%;">				
+			<tr>
+				<td><span style="font-weight:bold;font-size:25px;">Profile</span>
+				<a id="editp1" style="float:right;margin-right:5%;" class="btn btn-info">Book</a></td>
+			<tr/>
+			<tr>
+				<td>
+					<div class="span8" style="float:left;width:80%;">
+					<table class="table">
+					<tr><td >First Name : </td> <td style="text-transform:capitalize;">    </td></tr>
+					<tr><td >Last Name : </td> <td style="text-transform:capitalize;">    </td></tr>
+					<tr><td >Station : </td> <td style="text-transform:capitalize;">    </td></tr>
+					<tr><td>Registration No : </td> <td>    </td></tr>
+					<tr><td>Total Pickup : </td> <td>    </td></tr>
+					<tr><td>Rating : </td> <td>    </td></tr>
+					<tr><td>Mobile No : </td> <td>    </td></tr>
+					
+					<tr><td></td> <td></td></tr>
+					</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<span class="label label-success" id="chang" style="float:right;display:none;">Password Successfully Changed &nbsp;&nbsp;&nbsp;<span>  <!-- display:none; color:#0000ff;-->
+				</td>
+			</tr>
+		</table>
+		</div>		
+		
