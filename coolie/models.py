@@ -24,15 +24,12 @@ class Employee(models.Model):
 
 
 class Booking(models.Model):
-    flags = (('Platfom to Outside', 'Outside to Platform'),)
-    userid = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-    )
+    flags = (('Platform to Outside', 'Outside to Platform'),)
+    userid = models.CharField(max_length=300)
     empId = models.ForeignKey(Employee, on_delete=models.CASCADE)
     locId = models.ForeignKey(Location, on_delete=models.CASCADE)
     pickupTime = models.DateTimeField(auto_now=True)
-    dropTime = models.DateTimeField(auto_now=False)
+    dropTime = models.DateTimeField(auto_now=False, default=0)
     flagIn = models.CharField(max_length=30, choices=flags, default='Platform to Outside')
 
     def __str__(self):
@@ -54,3 +51,20 @@ class Available(models.Model):
     def __str__(self):
         return str(self.empId)
 
+class CoolieRating(models.Model):
+    coolieId = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    rating = models.CharField(default=5),
+    review = models.TextField(null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class CustomerRating(models.Model):
+    userId = models.ForeignKey(settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, default=1)
+    rating = models.CharField(default=5),
+    review = models.TextField(null=True)
+
+    def __str__(self):
+        return str(self.id)

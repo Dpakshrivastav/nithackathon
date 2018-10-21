@@ -1,12 +1,48 @@
 {% extends 'coolie/base.html' %}
 
 {% block content %}
-<<<<<<< HEAD
-{% for i in coolie %}
-=======
-{% for i in Employee %}
->>>>>>> de45a63f82ee259d1250267d18c0945aae8ebee7
-    <img src="{{ i.profilePic.url }}">
+
+
+<div class="span12 well pass1">
+    {% for i, j in mylist %}
+			<img src="{{ i.profilePic.url }}" style="margin-left:400px; width: 150px; height: 150px;">
+			<table style="width : 100%;">
+			<tr>
+				<td><span style="font-weight:bold;font-size:25px;">Profile</span>
+                    							{% if user.is_authenticated %}
+			        <a href="{% url 'book' i.id %}" id="editp1" style="float:right;margin-right:5%;" class="btn btn-info">Book</a>
+      					{% else %}
+					<p class="btn btn-info" style="float:right;margin-right:5%; background: grey">Book</p><br>
+      			<br><small style="float: right;">Please sign in to book Sahayak</small>
+      					{% endif %}
+
+                </td>
+			<tr/>
+			<tr>
+				<td>
+					<div class="span8" style="float:left;width:80%;">
+					<table class="table">
+					<tr><td >Name : </td> <td style="text-transform:capitalize;"> {{ i.firstName }} {{ i.lastName }}</td></tr>
+					<tr><td >Station : </td> <td style="text-transform:capitalize;"> {{ station.0 }}  </td></tr>
+					<tr><td>Registration No : </td> <td>  {{ i.registrationNo }}  </td></tr>
+					<tr><td>Rating : </td> <td>    </td></tr>
+					<tr><td>Mobile No : </td> <td>   {{ i.contactNo }} </td></tr>
+
+					<tr><td></td> <td></td></tr>
+					</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<span class="label label-success" id="chang" style="float:right;display:none;">Password Successfully Changed &nbsp;&nbsp;&nbsp;<span>  <!-- display:none; color:#0000ff;-->
+				</td>
+			</tr>
+		</table>
+		</div>
+
+
+
 {{ i.firstName }}
 {% endfor %}
 {% endblock %}

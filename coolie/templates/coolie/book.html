@@ -1,0 +1,18 @@
+{% extends 'coolie/base.html' %}
+
+{% block content %}
+<h1>You want Pick from : </h1>
+<form action="{% url 'confirm' coolie_id %}" method="get">
+  <div class="form-group">
+<div class="radio">
+  <label><input type="radio" name="flag" value="out" checked>From Platform to Outside</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="flag" value="in">From Outside to Platform</label>
+
+</div>
+ <label><input type="checkbox" name="flag" value="" required>I accept the term and codition </label>
+
+      <input type="submit" class="submit" required>
+  </div>
+    {% endblock %}
