@@ -1,10 +1,13 @@
 {% extends 'coolie/base.html' %}
 {% load staticfiles %}
 {% block content %}
-    <h1>You have succefully placed book</h1>
-    <h6>Kindly, contact the sahayak at ContactNo +91{{ coolie.contactNo }}</h6>
+
+{% for i in coolie %}
+<h1>You have succefully placed book</h1>
+    <h6>Kindly, contact the sahayak at ContactNo +91{{ i.contactNo }}</h6>
     <h6>You will be charged at govt price @50 per unit</h6>
     <h6>hope you will have a great journey </h6>
 
+{% endfor %}
 
 {% endblock %}

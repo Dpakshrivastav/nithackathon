@@ -4,9 +4,9 @@ from .form import SignUpForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .models import Employee, Booking, Location, Rate, Available, CoolieRating, CustomerRating
+from time import gmtime, strftime
 from django.conf import settings
 
-import statistics as st
 # Create your views here.
 
 def signup(request):
@@ -59,21 +59,28 @@ def confirm(request, coolie_id):
     flag = request.GET['flag']
     if(avl):
         userId = request.user.id
-        emp = Employee.objects.filter(pk=coolie_id)
-        loc = Location.objects.filter(pk=coolie_id)
+        emp = Employee.objects.filter(pk=coolie_id).first()
+
+        print(emp)
+        loc = Location.objects.filter(pk=coolie_id).first()
         if flag == 'in':
             flagIn = 'Outside to Platform'
         else :
             flagIn = 'Platform to Outside'
-        book = Booking(userid = userId, empId=emp, locId=loc, flagIn=flagIn)
+        book = Booking(userid = userId, empId=emp, locId=loc, flagIn=str(flagIn))
         book.save()
         bookid = Booking.objects.latest('id')
         coolie = Employee.objects.filter(id=coolie_id)
         context = {
             'bookid':bookid,
-            'coolie':coolie,
+            'coolie': coolie,
         }
         return render(request, 'coolie/confirm.html', context)
     else:
         return render(request, "<h1>Coolie not availble</h1>")
 
+
+def profile(request, coolie_id):
+    coolie = Employee.objects.filter(pk=coolie_id)
+    station = Location.objects.filter(pk=coolie_id)
+    return render(request, 'coolie/profile.html', { 'coolie' : coolie, 'station' : station, 'mylist': zip(coolie, station) })

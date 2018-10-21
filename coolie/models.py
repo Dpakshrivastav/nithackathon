@@ -28,8 +28,8 @@ class Booking(models.Model):
     userid = models.CharField(max_length=300)
     empId = models.ForeignKey(Employee, on_delete=models.CASCADE)
     locId = models.ForeignKey(Location, on_delete=models.CASCADE)
-    pickupTime = models.DateTimeField(auto_now=True)
-    dropTime = models.DateTimeField(auto_now=False, default=0)
+    # pickupTime = models.DateTimeField(auto_now=True)
+    # dropTime = models.DateTimeField(auto_now=False, default=0)
     flagIn = models.CharField(max_length=30, choices=flags, default='Platform to Outside')
 
     def __str__(self):
